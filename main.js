@@ -9,25 +9,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
     let isStarted = false;
 
-    // دالة تشغيل الصوت والفيديو
-    function startGateVideo(e) {
+    // 1. عند الضغط: تشغيل الصوت والفيديو الأول (بدون إخفاء البوابة)
+    function startGateVideo() {
         if (isStarted) return;
         isStarted = true;
 
-        // 1. تشغيل الصوت فوراً (مع التعامل مع حماية الآيفون والأندرويد)
         if (bgMusic) {
-            bgMusic.muted = false;
-            bgMusic.play().then(() => {
-                console.log("Audio started successfully on Mobile/PC!");
-            }).catch(err => {
-                console.log("Audio playback prevented:", err);
-            });
+            bgMusic.play().catch(err => console.log('Audio error:', err));
         }
 
-        // 2. تشغيل فيديو البوابة
         if (gateVideo) {
             gateVideo.play().catch(err => {
-                console.log("Gate video error:", err);
+                console.log('Gate video play error:', err);
+                // لو الفيديو فيه مشكلة في التشغيل، افتح الموقع مباشرة
                 revealMainContent();
             });
         } else {
@@ -35,16 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // ربط الضغطة/اللمسة على الموبايل والبوابة
-    if (videoGate) {
-        videoGate.addEventListener('touchstart', startGateVideo, { passive: true });
-        videoGate.addEventListener('click', startGateVideo);
-    }
-
-    document.addEventListener('touchstart', startGateVideo, { once: true, passive: true });
-    document.addEventListener('click', startGateVideo, { once: true });
-
-    // لما فيديو البوابة يخلص -> افتح باقي الدعوة
+    // 2. لما الفيديو الأول يخلص تماماً -> افتح الصفحة الرئيسية وفك السكرول
     if (gateVideo) {
         gateVideo.addEventListener('ended', revealMainContent);
     }
@@ -52,22 +37,31 @@ document.addEventListener('DOMContentLoaded', function() {
     function revealMainContent() {
         if (videoGate) {
             videoGate.style.display = 'none';
+            videoGate.classList.add('hidden');
         }
 
         if (mainContent) {
             mainContent.classList.remove('hidden');
         }
 
+        // تفعيل السكرول بعد انتهاء فيديو البوابة
         document.body.style.overflow = 'auto';
 
         if (secondVideo) {
             secondVideo.play().catch(err => console.log('Second video error:', err));
         }
 
+        // تشغيل انيميشن الكتابة
         startTypewriter();
     }
 
-    // TYPEWRITER LOGIC
+    // ربط الضغطة بالبوابة
+    if (videoGate) {
+        videoGate.addEventListener('click', startGateVideo);
+        videoGate.addEventListener('touchstart', startGateVideo);
+    }
+
+    // 3. TYPEWRITER LOGIC
     function startTypewriter() {
         const elements = document.querySelectorAll('.typewriter-text');
         
@@ -93,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// COUNTDOWN TIMER LOGIC
+// 4. COUNTDOWN TIMER LOGIC
 const targetDate = new Date('May 23, 2027 00:00:00').getTime();
 
 function updateCountdown() {
@@ -125,3 +119,6 @@ function updateCountdown() {
 
 setInterval(updateCountdown, 1000);
 updateCountdown();
+
+
+
