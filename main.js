@@ -190,3 +190,9 @@ window.addEventListener('DOMContentLoaded', () => {
   document.getElementById('preloader').style.display = 'none';
 });
 
+window.addEventListener('load', () => {
+  const loader = document.querySelector('.loader-or-overlay');
+  if (loader) {
+    loader.style.display = 'none';
+  }
+});

@@ -486,5 +486,19 @@ html {
 }
 
 
+/* بدلاً من height: 100vh */
+.main-wrapper {
+  min-height: 100dvh; /* Dynamic Viewport Height */
+  width: 100%;
+}
 
-
+body {
+  -webkit-overflow-scrolling: touch;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+html, body {
+  min-height: 100dvh;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
