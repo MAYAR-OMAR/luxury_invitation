@@ -4,14 +4,11 @@
     box-sizing: border-box;
 }
 
-html, body {
-    width: 100%;
-    min-height: 100dvh;
-    background-color: #fcfbf7 !important; /* لون أوف وايت فاخر بدل الأسود */
-    color: #2c2c2c;
+body {
     font-family: 'Georgia', serif;
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
+    background-color: #000;
+    color: #2c2c2c;
+    overflow: hidden;
 }
 
 .hidden {
@@ -23,13 +20,12 @@ html, body {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100dvh;
+    width: 100vw;
+    height: 100vh;
     z-index: 9999;
-    background-color: #fcfbf7 !important; /* ضمان عدم ظهور شاشة سوداء أثناء التحميل */
+    background-color: #000;
     cursor: pointer;
     pointer-events: auto !important;
-    touch-action: manipulation;
 }
 
 #gate-video {
@@ -41,12 +37,8 @@ html, body {
 /* SECTION 2: First Page */
 #main-content {
     position: relative;
-    width: 100%;
-    min-height: 100dvh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    width: 100vw;
+    height: 100vh;
     overflow: hidden;
 }
 
@@ -64,19 +56,16 @@ html, body {
     position: relative;
     z-index: 2;
     width: 100%;
-    min-height: 100dvh;
+    height: 100%;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 20px 0;
-    box-sizing: border-box;
 }
 
 .card-overlay {
     width: 100%;
     height: 100%;
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.2); /* خامة خفيفة تبين الفيديو */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -148,14 +137,31 @@ html, body {
     50% { opacity: 0; }
 }
 
+
+
+
+
+/* section 3 */
+
+/* Smooth Scrolling for the whole page */
+html {
+    scroll-behavior: smooth;
+}
+
+#main-content {
+    height: auto !important; /* Yesmakh bel-scroll */
+    overflow-y: auto;
+}
+
 /* SECTION 3: Countdown Section Styling */
 .countdown-section {
-    width: 100%;
-    min-height: 100dvh;
+    width: 100vw;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(135deg, rgba(245, 240, 230, 0.85), rgba(225, 215, 198, 0.9));
+    background: linear-gradient(135deg, rgba(245, 240, 230, 0.85), rgba(225, 215, 198, 0.9)), 
+                url('../assets/bg-pillars.jpg') center/cover no-repeat fixed;
     padding: 40px 20px;
     box-sizing: border-box;
 }
@@ -228,20 +234,26 @@ html, body {
     margin-top: 10px;
 }
 
+
+
+
+
+
 /* SECTION 4: Quran & Welcome Styling */
 .quran-section {
-    width: 100%;
-    min-height: 100dvh;
+    width: 100vw;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    /* Put your background image here */
     background: url('./photo1.png') center/cover no-repeat fixed;
     padding: 40px 20px;
     box-sizing: border-box;
 }
 
 .quran-card {
-    background: rgba(255, 255, 255, 0.88);
+    background: rgba(255, 255, 255, 0.88); /* White rounded card like screenshot */
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-radius: 28px;
@@ -251,7 +263,7 @@ html, body {
     text-align: center;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
     border: 1px solid rgba(255, 255, 255, 0.6);
-    direction: rtl;
+    direction: rtl; /* Right to Left for Arabic */
 }
 
 .quran-text {
@@ -279,14 +291,18 @@ html, body {
     margin-top: 10px;
 }
 
+
+
+
 /* SECTION 5: Location Styling */
 .location-section {
-    width: 100%;
-    min-height: 100dvh;
+    width: 100vw;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(135deg, rgba(245, 240, 230, 0.9), rgba(225, 215, 198, 0.95));
+    background: linear-gradient(135deg, rgba(245, 240, 230, 0.9), rgba(225, 215, 198, 0.95)),
+                url('../assets/bg-pillars.jpg') center/cover no-repeat fixed;
     padding: 40px 20px;
     box-sizing: border-box;
 }
@@ -295,7 +311,7 @@ html, body {
     background: transparent;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border: 2px dashed #c2a682;
+    border: 2px dashed #c2a682; /* Warm Gold Dashed Border */
     border-radius: 28px;
     padding: 35px 25px;
     max-width: 400px;
@@ -358,6 +374,7 @@ html, body {
     margin-bottom: 25px;
 }
 
+/* Button Styling Matched with Theme */
 .location-btn {
     display: inline-block;
     background: linear-gradient(135deg, #a3825e, #8c6a46);
@@ -372,6 +389,12 @@ html, body {
     transition: all 0.3s ease;
 }
 
+.location-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px rgba(163, 130, 94, 0.5);
+    background: linear-gradient(135deg, #8c6a46, #735332);
+}
+
 .heart-icon {
     margin-left: 5px;
     color: #f7e3d0;
@@ -379,20 +402,22 @@ html, body {
 
 /* SECTION 6: Closing Section Styling */
 .closing-section {
-    width: 100%;
-    min-height: 100dvh;
+    width: 100vw;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(135deg, rgba(245, 240, 230, 0.9), rgba(225, 215, 198, 0.95));
+    background: linear-gradient(135deg, rgba(245, 240, 230, 0.9), rgba(225, 215, 198, 0.95)),
+                url('../assets/bg-pillars.jpg') center/cover no-repeat fixed;
     padding: 20px;
     box-sizing: border-box;
 }
 
+/* Container for Frame */
 .floral-frame-card {
     position: relative;
     width: 100%;
-    max-width: 360px;
+    max-width: 360px; /* الحجم المناسب تماماً */
     height: 480px;
     display: flex;
     justify-content: center;
@@ -401,10 +426,11 @@ html, body {
     box-sizing: border-box;
 }
 
+/* Inner box constrained exactly inside the empty square area */
 .closing-content {
     position: absolute;
-    width: 58%;
-    height: 48%;
+    width: 58%; /* يحدد العرض الداخلي للمربع فقط */
+    height: 48%; /* يحدد الارتفاع الداخلي للمربع فقط */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -417,7 +443,7 @@ html, body {
 
 .closing-message {
     font-family: 'Amiri', serif;
-    font-size: 0.78rem;
+    font-size: 0.78rem; /* تصغير الخط ليتناسب مع المساحة */
     line-height: 1.4;
     color: #4a3e35;
     direction: rtl;
@@ -433,7 +459,7 @@ html, body {
 
 .closing-names {
     font-family: 'Georgia', serif;
-    font-size: 1.05rem;
+    font-size: 1.05rem; /* تصغير الاسماء لعدم الخروج عن الاطار */
     font-style: italic;
     color: #2b231d;
     margin-bottom: 4px;
@@ -458,3 +484,77 @@ html, body {
     color: #8c7e72;
     font-weight: 600;
 }
+
+
+/* بدلاً من height: 100vh */
+.main-wrapper {
+  min-height: 100dvh; /* Dynamic Viewport Height */
+  width: 100%;
+}
+
+body {
+  -webkit-overflow-scrolling: touch;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+html, body {
+  min-height: 100dvh;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+/* 1. تغيير خلفية الموقع الأساسية للون كريمي/أوف وايت أنيق يناسب الدعوة بدل الأسود */
+html, body {
+    background-color: #fcfbf7 !important; /* لون هادي وفاخر بدل الأسود */
+    margin: 0;
+    padding: 0;
+}
+
+/* 2. إلغاء الخلفيات السوداء من الحاويات والسكشنات */
+#video-gate-container,
+#main-content,
+.card-container,
+section {
+    background-color: transparent !important;
+}
+
+/* 3. لو عايزة بوابة الفيديو الأولى نفسها ما يكونش ليها خلفية سوداء لو الڤيديو اتحمل */
+#video-gate-container {
+    background-color: #fcfbf7 !important;
+}
+/* 1. إعطاء القسم الأول ارتفاع الشاشة بالكامل على الموبايل واللابتوب */
+#main-content {
+    position: relative;
+    width: 100%;
+    min-height: 100dvh; /* dvh بتاخد طول شاشة الموبايل بدقة حتى مع وجود شريط Safari/Chrome */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* 2. تجبير فيديو الخلفية إنه يغطي الشاشة بالكامل بدون ما يمُط أو يسيب فراغ */
+.bg-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* تغطية الشاشة بالكامل */
+    z-index: 1;
+}
+
+/* 3. ضبط الحاوية اللي جواها النص والكارت */
+.card-container {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+    box-sizing: border-box;
+}
+
+
