@@ -502,3 +502,22 @@ html, body {
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
 }
+/* 1. تغيير خلفية الموقع الأساسية للون كريمي/أوف وايت أنيق يناسب الدعوة بدل الأسود */
+html, body {
+    background-color: #fcfbf7 !important; /* لون هادي وفاخر بدل الأسود */
+    margin: 0;
+    padding: 0;
+}
+
+/* 2. إلغاء الخلفيات السوداء من الحاويات والسكشنات */
+#video-gate-container,
+#main-content,
+.card-container,
+section {
+    background-color: transparent !important;
+}
+
+/* 3. لو عايزة بوابة الفيديو الأولى نفسها ما يكونش ليها خلفية سوداء لو الڤيديو اتحمل */
+#video-gate-container {
+    background-color: #fcfbf7 !important;
+}
